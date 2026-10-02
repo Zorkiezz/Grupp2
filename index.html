@@ -1,11 +1,184 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grupp 2</title>
+    <meta name="theme-color" content="#171323">
+    <meta name="description" content="Popcorn – tips och snack om film, tv-serier och spel.">
+    <title>Popcorn — film, serier &amp; spel</title>
+    <link rel="icon" href="https://www.google.com/s2/favicons?domain=imdb.com&amp;sz=64" type="image/png">
+    <style>
+        :root { color-scheme: dark; --ink: #f8f4ff; --muted: #c5bfd2; --bg: #171323; --panel: #241e33; --pink: #ff5f9e; --yellow: #ffd166; --line: #473c5c; }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { margin: 0; background: var(--bg); color: var(--ink); font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.6; }
+        a { color: inherit; }
+        .container { width: min(1080px, calc(100% - 2rem)); margin-inline: auto; }
+        header { border-bottom: 1px solid var(--line); background: #171323ee; }
+        .topbar { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+        .brand { color: var(--ink); text-decoration: none; font-size: 1.45rem; font-weight: 900; letter-spacing: -.04em; }
+        .brand span, h1 span { color: var(--pink); }
+        nav { display: flex; gap: .5rem; }
+        .tab-button { border: 1px solid transparent; border-radius: 999px; padding: .6rem 1rem; color: var(--muted); background: transparent; font: inherit; font-weight: 700; cursor: pointer; }
+        .tab-button[aria-selected="true"] { color: var(--bg); background: var(--yellow); }
+        .tab-button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; }
+        main { min-height: 65vh; }
+        .hero { padding: clamp(3.5rem, 10vw, 7rem) 0 4rem; background: radial-gradient(ellipse at 80% 10%, #673c6b 0, transparent 38%); }
+        .eyebrow { color: var(--yellow); text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; font-weight: 800; }
+        h1 { max-width: 760px; margin: .4rem 0 1rem; font-size: clamp(2.5rem, 8vw, 5.5rem); line-height: .99; letter-spacing: -.06em; }
+        .intro { max-width: 600px; color: var(--muted); font-size: 1.1rem; }
+        .cta { display: inline-block; margin-top: 1rem; padding: .8rem 1.1rem; border-radius: 999px; background: var(--pink); color: #211426; text-decoration: none; font-weight: 800; }
+        section.content-section { padding: 2rem 0 3rem; }
+        h2 { margin: 0 0 .4rem; font-size: clamp(1.6rem, 4vw, 2.2rem); letter-spacing: -.035em; }
+        .section-lead { margin: 0 0 1.4rem; color: var(--muted); }
+        .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .card, .panel { border: 1px solid var(--line); border-radius: 1rem; background: var(--panel); padding: 1.25rem; }
+        .card .emoji { font-size: 2rem; }
+        .card h3 { margin: .35rem 0; }
+        .card p { margin: 0; color: var(--muted); }
+        .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: .8rem; }
+        table { width: 100%; border-collapse: collapse; min-width: 420px; text-align: left; }
+        th, td { padding: .85rem 1rem; border-bottom: 1px solid var(--line); }
+        th { color: var(--yellow); }
+        tr:last-child td { border-bottom: 0; }
+        .split { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start; }
+        .swatches { display: flex; gap: .65rem; flex-wrap: wrap; margin: 1rem 0; }
+        .swatch { display: flex; align-items: center; gap: .45rem; color: var(--muted); font-size: .85rem; }
+        .dot { width: 1rem; height: 1rem; border-radius: 50%; background: var(--pink); }
+        .dot.purple { background: var(--bg); border: 1px solid #84769a; }
+        .dot.gold { background: var(--yellow); }
+        .sketch { border: 1px dashed #877997; border-radius: .7rem; padding: 1rem; color: var(--muted); font: .83rem/1.7 ui-monospace, monospace; white-space: pre-wrap; }
+        .kanban { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; }
+        .kanban h3 { margin: 0 0 .7rem; font-size: 1rem; color: var(--yellow); }
+        .task { margin-top: .6rem; padding: .7rem; background: #171323; border-radius: .6rem; font-size: .92rem; }
+        .task small { display: block; margin-top: .25rem; color: var(--muted); }
+        .contact-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 1.5rem; }
+        .socials { display: flex; flex-wrap: wrap; gap: .65rem; padding: 0; list-style: none; }
+        .socials a { color: var(--yellow); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+        form { display: grid; gap: .9rem; }
+        label { display: grid; gap: .35rem; font-weight: 700; }
+        input, select, textarea { width: 100%; border: 1px solid var(--line); border-radius: .55rem; padding: .75rem; background: #171323; color: var(--ink); font: inherit; }
+        textarea { min-height: 110px; resize: vertical; }
+        .submit { border: 0; border-radius: 999px; background: var(--pink); color: #211426; padding: .8rem 1rem; font: inherit; font-weight: 800; cursor: pointer; }
+        #form-message { min-height: 1.5em; color: var(--yellow); }
+        [hidden] { display: none !important; }
+        footer { border-top: 1px solid var(--line); padding: 1.5rem 0; color: var(--muted); font-size: .9rem; }
+        @media (max-width: 700px) { .topbar { min-height: 68px; } .cards, .split, .kanban, .contact-layout { grid-template-columns: 1fr; } .hero { padding-top: 3.2rem; } .card { padding: 1rem; } }
+        @media (max-width: 380px) { .container { width: min(calc(100% - 1.25rem), 1080px); } .brand { font-size: 1.2rem; } .tab-button { padding: .5rem .7rem; } }
+    </style>
 </head>
 <body>
-    
+    <header>
+        <div class="container topbar">
+            <a class="brand" href="#home" aria-label="Popcorn, till startsidan">🍿 POP<span>CORN</span></a>
+            <nav aria-label="Huvudmeny" role="tablist">
+                <button class="tab-button" id="home-tab" role="tab" aria-controls="home-panel" aria-selected="true">Home</button>
+                <button class="tab-button" id="contact-tab" role="tab" aria-controls="contact-panel" aria-selected="false" tabindex="-1">Contact</button>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <div id="home-panel" role="tabpanel" aria-labelledby="home-tab">
+            <section class="hero" id="home">
+                <p class="eyebrow">Din paus från verkligheten</p>
+                <h1>Film. Serier.<br><span>Spel.</span> Snack.</h1>
+                <p class="intro">Välkommen till Popcorn – en färgstark mötesplats för allt som är värt att se och spela. Hitta nästa favorit och dela vad du tycker!</p>
+                <a class="cta" href="#tips">Hitta något nytt ↓</a>
+            </section>
+            <section class="content-section" id="tips">
+                <h2>Vad är du sugen på?</h2><p class="section-lead">Tre vägar till nästa stora upplevelse.</p>
+                <div class="cards">
+                    <article class="card"><span class="emoji" aria-hidden="true">🎬</span><h3>Filmkväll</h3><p>Tips på allt från stora äventyr till små indiepärlor.</p></article>
+                    <article class="card"><span class="emoji" aria-hidden="true">📺</span><h3>Ett avsnitt till</h3><p>Serier som får dig att glömma att du bara skulle se ett avsnitt.</p></article>
+                    <article class="card"><span class="emoji" aria-hidden="true">🎮</span><h3>Spelvärlden</h3><p>Nya världar, smarta indiespel och spel att köra ihop.</p></article>
+                </div>
+            </section>
+            <section class="content-section" aria-labelledby="schedule-title">
+                <h2 id="schedule-title">Veckans sändningstider</h2><p class="section-lead">Våra redaktionella snack och tips – svensk tid.</p>
+                <div class="table-wrap"><table><thead><tr><th>Dag</th><th>Tid</th><th>På menyn</th></tr></thead><tbody>
+                    <tr><td>Tisdag</td><td>18.00–19.00</td><td>Veckans film</td></tr>
+                    <tr><td>Torsdag</td><td>18.00–19.00</td><td>Seriehörnan</td></tr>
+                    <tr><td>Lördag</td><td>14.00–16.00</td><td>Spel &amp; community</td></tr>
+                </tbody></table></div>
+            </section>
+            <section class="content-section" aria-labelledby="design-title">
+                <h2 id="design-title">Grafisk profil &amp; skiss</h2><p class="section-lead">Designidé: en mysig, mobilvänlig streamingkänsla med tydliga kontraster.</p>
+                <div class="split">
+                    <div class="panel"><h3>Färgpalett</h3><div class="swatches"><span class="swatch"><i class="dot"></i> Popcornrosa</span><span class="swatch"><i class="dot purple"></i> Nattlila</span><span class="swatch"><i class="dot gold"></i> Neon-gul</span></div><p>Rundade kort, stora rubriker och tydliga knappar gör det enkelt att hitta runt även på en liten skärm.</p></div>
+                    <div class="panel"><h3>Mobilskiss</h3><div class="sketch" aria-label="Textskiss av mobilens layout">┌──────────────────┐
+│ 🍿 POPCORN Home Contact │
+├──────────────────┤
+│   FILM. SERIER.   │
+│      SPEL.        │
+│  [ Hitta tips ]   │
+├──────────────────┤
+│ 🎬 Filmkort       │
+│ 📺 Seriekort      │
+│ 🎮 Spelkort       │
+├──────────────────┤
+│ Veckans tider     │
+└──────────────────┘</div></div>
+                </div>
+            </section>
+            <section class="content-section" aria-labelledby="board-title">
+                <h2 id="board-title">Kanban – projektplan</h2><p class="section-lead">Exempeluppgifter för gruppen; byt ut Teammedlem mot era namn.</p>
+                <div class="kanban">
+                    <div class="panel"><h3>Att göra</h3><div class="task">Samla film- och speltips<small>Ansvarig: Teammedlem 1</small></div><div class="task">Skriv README och krediter<small>Ansvarig: Teammedlem 2</small></div></div>
+                    <div class="panel"><h3>Pågår</h3><div class="task">Testa mobilvy och navigering<small>Ansvarig: Teammedlem 3</small></div></div>
+                    <div class="panel"><h3>Klart</h3><div class="task">Skapa färgprofil och sidlayout<small>Ansvarig: Teammedlem 4</small></div><div class="task">Lägg till kontaktformulär<small>Ansvarig: Teammedlem 2</small></div></div>
+                </div>
+                <p class="section-lead" style="margin-top:1rem">GitHub-dokumentation: skapa en README.md i repot med projektbeskrivning, designskiss, instruktioner och en lista över vem som gjort vad.</p>
+            </section>
+        </div>
+        <section id="contact-panel" role="tabpanel" aria-labelledby="contact-tab" hidden class="content-section">
+            <p class="eyebrow">Hör av dig</p><h1>Vi vill höra <span>från dig.</span></h1><p class="section-lead">Tipsa oss, ställ en fråga eller anmäl ditt intresse för att vara med.</p>
+            <div class="contact-layout">
+                <aside class="panel"><h2>Häng med!</h2><p>Följ Popcorn i dina flöden för fler film-, serie- och speltips.</p>
+                    <ul class="socials"><li><a href="https://x.com/" target="_blank" rel="noopener noreferrer">X / Twitter</a></li><li><a href="https://facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a></li><li><a href="https://youtube.com/" target="_blank" rel="noopener noreferrer">YouTube</a></li><li><a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a></li></ul>
+                    <p><small>Sociala länkar går till respektive plattform.</small></p>
+                </aside>
+                <div class="panel"><h2>Intresseanmälan</h2>
+                    <form id="interest-form">
+                        <label for="name">Namn<input id="name" name="name" autocomplete="name" required></label>
+                        <label for="email">E-post<input id="email" name="email" type="email" autocomplete="email" required></label>
+                        <label for="interest">Vad gillar du mest?<select id="interest" name="interest" required><option value="">Välj ett ämne</option><option>Film</option><option>Tv-serier</option><option>Spel</option><option>Alltihop!</option></select></label>
+                        <label for="message">Meddelande<textarea id="message" name="message" placeholder="Dela gärna ett tips!"></textarea></label>
+                        <button class="submit" type="submit">Skicka intresseanmälan</button><p id="form-message" role="status" aria-live="polite"></p>
+                    </form>
+                    <p><small>Demoformulär: uppgifterna skickas inte till någon server.</small></p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer><div class="container">© 2025 Popcorn · Skapat av Grupp 2</div></footer>
+    <script>
+        const tabs = [...document.querySelectorAll('[role="tab"]')];
+        const panels = tabs.map(tab => document.getElementById(tab.getAttribute('aria-controls')));
+        function activateTab(selected, moveFocus = false) {
+            tabs.forEach((tab, index) => {
+                const active = tab === selected;
+                tab.setAttribute('aria-selected', String(active));
+                tab.tabIndex = active ? 0 : -1;
+                panels[index].hidden = !active;
+            });
+            if (moveFocus) selected.focus();
+            history.replaceState(null, '', selected.id === 'home-tab' ? '#home' : '#contact');
+        }
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', () => activateTab(tab));
+            tab.addEventListener('keydown', event => {
+                if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+                    event.preventDefault();
+                    activateTab(tabs[(index + (event.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length], true);
+                }
+            });
+        });
+        if (location.hash === '#contact') activateTab(tabs[1]);
+        document.getElementById('interest-form').addEventListener('submit', event => {
+            event.preventDefault();
+            document.getElementById('form-message').textContent = 'Tack för ditt intresse! Det här dem formuläret skickar inte uppgifterna vidare.';
+            event.currentTarget.reset();
+        });
+    </script>
 </body>
 </html>
