@@ -7,66 +7,7 @@
     <meta name="description" content="Popcorn – tips och snack om film, tv-serier och spel.">
     <title>Popcorn — film, serier &amp; spel</title>
     <link rel="icon" href="https://www.google.com/s2/favicons?domain=imdb.com&amp;sz=64" type="image/png">
-
-    <style>
-        :root { color-scheme: dark; --ink: #f8f4ff; --muted: #c5bfd2; --bg: #171323; --panel: #241e33; --pink: #ff5f9e; --yellow: #ffd166; --line: #473c5c; }
-        * { box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { margin: 0; background: var(--bg); color: var(--ink); font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.6; }
-        a { color: inherit; }
-        .container { width: min(1080px, calc(100% - 2rem)); margin-inline: auto; }
-        header { border-bottom: 1px solid var(--line); background: #171323ee; }
-        .topbar { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-        .brand { color: var(--ink); text-decoration: none; font-size: 1.45rem; font-weight: 900; letter-spacing: -.04em; }
-        .brand span, h1 span { color: var(--pink); }
-        nav { display: flex; gap: .5rem; }
-        .tab-button { border: 1px solid transparent; border-radius: 999px; padding: .6rem 1rem; color: var(--muted); background: transparent; font: inherit; font-weight: 700; cursor: pointer; }
-        .tab-button[aria-selected="true"] { color: var(--bg); background: var(--yellow); }
-        .tab-button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; }
-        main { min-height: 65vh; }
-        .hero { padding: clamp(3.5rem, 10vw, 7rem) 0 4rem; background: radial-gradient(ellipse at 80% 10%, #673c6b 0, transparent 38%); }
-        .eyebrow { color: var(--yellow); text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; font-weight: 800; }
-        h1 { max-width: 760px; margin: .4rem 0 1rem; font-size: clamp(2.5rem, 8vw, 5.5rem); line-height: .99; letter-spacing: -.06em; }
-        .intro { max-width: 600px; color: var(--muted); font-size: 1.1rem; }
-        .cta { display: inline-block; margin-top: 1rem; padding: .8rem 1.1rem; border-radius: 999px; background: var(--pink); color: #211426; text-decoration: none; font-weight: 800; }
-        section.content-section { padding: 2rem 0 3rem; }
-        h2 { margin: 0 0 .4rem; font-size: clamp(1.6rem, 4vw, 2.2rem); letter-spacing: -.035em; }
-        .section-lead { margin: 0 0 1.4rem; color: var(--muted); }
-        .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-        .card, .panel { border: 1px solid var(--line); border-radius: 1rem; background: var(--panel); padding: 1.25rem; }
-        .card .emoji { font-size: 2rem; }
-        .card h3 { margin: .35rem 0; }
-        .card p { margin: 0; color: var(--muted); }
-        .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: .8rem; }
-        table { width: 100%; border-collapse: collapse; min-width: 420px; text-align: left; }
-        th, td { padding: .85rem 1rem; border-bottom: 1px solid var(--line); }
-        th { color: var(--yellow); }
-        tr:last-child td { border-bottom: 0; }
-        .split { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start; }
-        .swatches { display: flex; gap: .65rem; flex-wrap: wrap; margin: 1rem 0; }
-        .swatch { display: flex; align-items: center; gap: .45rem; color: var(--muted); font-size: .85rem; }
-        .dot { width: 1rem; height: 1rem; border-radius: 50%; background: var(--pink); }
-        .dot.purple { background: var(--bg); border: 1px solid #84769a; }
-        .dot.gold { background: var(--yellow); }
-        .sketch { border: 1px dashed #877997; border-radius: .7rem; padding: 1rem; color: var(--muted); font: .83rem/1.7 ui-monospace, monospace; white-space: pre-wrap; }
-        .kanban { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; }
-        .kanban h3 { margin: 0 0 .7rem; font-size: 1rem; color: var(--yellow); }
-        .task { margin-top: .6rem; padding: .7rem; background: #171323; border-radius: .6rem; font-size: .92rem; }
-        .task small { display: block; margin-top: .25rem; color: var(--muted); }
-        .contact-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 1.5rem; }
-        .socials { display: flex; flex-wrap: wrap; gap: .65rem; padding: 0; list-style: none; }
-        .socials a { color: var(--yellow); text-decoration-thickness: 1px; text-underline-offset: 3px; }
-        form { display: grid; gap: .9rem; }
-        label { display: grid; gap: .35rem; font-weight: 700; }
-        input, select, textarea { width: 100%; border: 1px solid var(--line); border-radius: .55rem; padding: .75rem; background: #171323; color: var(--ink); font: inherit; }
-        textarea { min-height: 110px; resize: vertical; }
-        .submit { border: 0; border-radius: 999px; background: var(--pink); color: #211426; padding: .8rem 1rem; font: inherit; font-weight: 800; cursor: pointer; }
-        #form-message { min-height: 1.5em; color: var(--yellow); }
-        [hidden] { display: none !important; }
-        footer { border-top: 1px solid var(--line); padding: 1.5rem 0; color: var(--muted); font-size: .9rem; }
-        @media (max-width: 700px) { .topbar { min-height: 68px; } .cards, .split, .kanban, .contact-layout { grid-template-columns: 1fr; } .hero { padding-top: 3.2rem; } .card { padding: 1rem; } }
-        @media (max-width: 380px) { .container { width: min(calc(100% - 1.25rem), 1080px); } .brand { font-size: 1.2rem; } .tab-button { padding: .5rem .7rem; } }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
@@ -152,7 +93,7 @@
         </section>
     </main>
     <footer><div class="container">© 2025 Popcorn · Skapat av Grupp 2</div></footer>
-    
+
     <script>
         const tabs = [...document.querySelectorAll('[role="tab"]')];
         const panels = tabs.map(tab => document.getElementById(tab.getAttribute('aria-controls')));
